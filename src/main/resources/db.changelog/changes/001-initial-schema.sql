@@ -39,6 +39,7 @@ CREATE TABLE user_charger (
 CREATE TABLE charger_shm_data (
     charger_id_fk       BIGINT      NOT NULL,
     data_shm_file_id_fk BIGINT      NOT NULL,
+    index               INTEGER     NOT NULL,
     data                INTEGER     NOT NULL,
     timestamp           BIGINT      NOT NULL,
     received_at         TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
