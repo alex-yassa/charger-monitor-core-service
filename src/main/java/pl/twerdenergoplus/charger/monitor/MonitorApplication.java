@@ -3,10 +3,12 @@ package pl.twerdenergoplus.charger.monitor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.integration.config.EnableIntegration;
 
 @SpringBootApplication
 @EnableIntegration
+@IntegrationComponentScan
 @EnableConfigurationProperties
 public class MonitorApplication {
 

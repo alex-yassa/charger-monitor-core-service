@@ -1,0 +1,26 @@
+spring.application.name=monitor
+server.port=8080
+server.servlet.context-path=/charger-monitor/api
+
+# MQTT (Mosquitto) configuration
+mqtt.broker-url=tcp://localhost:1883
+mqtt.client-id=monitor-client
+mqtt.username=alex
+mqtt.password=123
+mqtt.default-topic=monitor/#
+mqtt.qos=1
+mqtt.keep-alive-interval=60
+mqtt.connection-timeout=30
+
+spring.datasource.url=jdbc:postgresql://localhost:6433/charger-monitoring-db
+spring.datasource.username=alex
+spring.datasource.password=112233
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.database=postgresql
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+
+# Liquibase
+spring.liquibase.change-log=classpath:db.changelog/db.changelog-master.yaml
