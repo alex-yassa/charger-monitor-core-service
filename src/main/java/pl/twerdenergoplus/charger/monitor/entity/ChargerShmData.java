@@ -19,6 +19,9 @@ public class ChargerShmData {
     private Charger charger;
 
     @Column(nullable = false)
+    private Integer index;
+
+    @Column(nullable = false)
     private Integer data;
 
     @Column(name = "received_at", nullable = false, updatable = false)
