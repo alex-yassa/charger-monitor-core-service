@@ -17,6 +17,7 @@ public interface ChargerShmDataMapper {
 
     @Mapping(target = "id", expression = "java(buildId(dto))")
     @Mapping(target = "charger", ignore = true)
+    @Mapping(target = "dataShmFile", ignore = true)
     @Mapping(target = "index", ignore = true)
     @Mapping(target = "receivedAt", ignore = true)
     ChargerShmData toEntity(ChargerShmDataCreateDto dto);

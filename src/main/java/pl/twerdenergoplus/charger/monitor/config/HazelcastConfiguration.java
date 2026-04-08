@@ -7,9 +7,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HazelcastConfiguration {
 
-    public static final String CACHE_APP_USER    = "appUser";
-    public static final String CACHE_CHARGER     = "charger";
+    public static final String CACHE_APP_USER     = "appUser";
+    public static final String CACHE_CHARGER      = "charger";
     public static final String CACHE_CHARGER_TYPE = "chargerType";
+    public static final String CACHE_DATA_SHM_FILE = "dataShmFile";
 
     @Bean
     public Config hazelcastConfig() {
@@ -39,6 +40,7 @@ public class HazelcastConfiguration {
         config.addMapConfig(new MapConfig(defaults).setName(CACHE_APP_USER));
         config.addMapConfig(new MapConfig(defaults).setName(CACHE_CHARGER));
         config.addMapConfig(new MapConfig(defaults).setName(CACHE_CHARGER_TYPE));
+        config.addMapConfig(new MapConfig(defaults).setName(CACHE_DATA_SHM_FILE));
 
         return config;
     }

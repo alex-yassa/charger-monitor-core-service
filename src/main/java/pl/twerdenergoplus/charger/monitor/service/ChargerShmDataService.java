@@ -8,9 +8,11 @@ import pl.twerdenergoplus.charger.monitor.dto.ChargerShmDataDto;
 import pl.twerdenergoplus.charger.monitor.entity.Charger;
 import pl.twerdenergoplus.charger.monitor.entity.ChargerShmData;
 import pl.twerdenergoplus.charger.monitor.entity.ChargerShmDataId;
+import pl.twerdenergoplus.charger.monitor.entity.DataShmFile;
 import pl.twerdenergoplus.charger.monitor.mapper.ChargerShmDataMapper;
 import pl.twerdenergoplus.charger.monitor.repository.ChargerRepository;
 import pl.twerdenergoplus.charger.monitor.repository.ChargerShmDataRepository;
+import pl.twerdenergoplus.charger.monitor.repository.DataShmFileRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -22,6 +24,7 @@ public class ChargerShmDataService {
 
     private final ChargerShmDataRepository chargerShmDataRepository;
     private final ChargerRepository chargerRepository;
+    private final DataShmFileRepository dataShmFileRepository;
     private final ChargerShmDataMapper chargerShmDataMapper;
 
     public List<ChargerShmDataDto> findAll() {
@@ -47,8 +50,11 @@ public class ChargerShmDataService {
     public ChargerShmDataDto create(ChargerShmDataCreateDto dto) {
         Charger charger = chargerRepository.findById(dto.getChargerId())
                 .orElseThrow(() -> new NoSuchElementException("Charger not found with id: " + dto.getChargerId()));
+        DataShmFile dataShmFile = dataShmFileRepository.findById(dto.getDataShmFileId())
+                .orElseThrow(() -> new NoSuchElementException("DataShmFile not found with id: " + dto.getDataShmFileId()));
         ChargerShmData entity = chargerShmDataMapper.toEntity(dto);
         entity.setCharger(charger);
+        entity.setDataShmFile(dataShmFile);
         return chargerShmDataMapper.toDto(chargerShmDataRepository.save(entity));
     }
 

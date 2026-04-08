@@ -18,6 +18,11 @@ public class ChargerShmData {
     @JoinColumn(name = "charger_id_fk", nullable = false)
     private Charger charger;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("dataShmFileId")
+    @JoinColumn(name = "data_shm_file_id_fk", nullable = false)
+    private DataShmFile dataShmFile;
+
     @Column(nullable = false)
     private Integer index;
 
