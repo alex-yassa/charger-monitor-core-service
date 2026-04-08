@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "kafka")
 public class KafkaProperties {
 
+    private boolean enabled = false;
     private String bootstrapServers = "localhost:9092";
     private String groupId = "monitor-group";
     private String clientId = "monitor-client";
