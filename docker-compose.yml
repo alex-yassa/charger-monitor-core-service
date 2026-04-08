@@ -1,0 +1,26 @@
+services:
+
+  app:
+    image: ghcr.io/alex-yassa/charger-monitor:latest
+    container_name: charger-monitor-app
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      # Override InfluxDB URL to point to the influxdb container
+      INFLUX_URL: http://influxdb:8086
+      # InfluxDB credentials referenced in application-prod.properties
+      INFLUXDB_INIT_ADMIN_TOKEN: my-super-secret-admin-token
+      INFLUXDB_INIT_ORG: twerdenergoplus
+      INFLUXDB_INIT_BUCKET: charger-data
+      # JWT secret (override the default placeholder)
+      JWT_SECRET: change-me-to-a-very-long-and-secure-secret-key-at-least-256-bits
+    ports:
+      - "8280:8080"
+    restart: unless-stopped
+    networks:
+      - charger-monitoring-net
+
+networks:
+  charger-monitoring-net:
+    external: true
+    name: charger-monitoring-net
+
