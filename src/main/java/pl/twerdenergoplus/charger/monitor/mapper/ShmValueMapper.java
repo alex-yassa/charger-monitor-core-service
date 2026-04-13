@@ -43,6 +43,24 @@ public final class ShmValueMapper {
         enableCharge.put(1, "Enabled");
         addMapping("evsGroup3", "0", enableCharge);
 
+        // evsGroup4 / index 27
+        Map<Integer, String> ccsPwmState = new HashMap<>();
+        ccsPwmState.put(0, "zero");
+        ccsPwmState.put(1, "unplugged");
+        ccsPwmState.put(2, "plugged in");
+        ccsPwmState.put(3, "charging");
+        ccsPwmState.put(4, "charging");
+        addMapping("evsGroup4", "27", ccsPwmState);
+
+        // evsGroup4 / index 50
+        Map<Integer, String> shademoPwmState = new HashMap<>();
+        shademoPwmState.put(0, "zero");
+        shademoPwmState.put(1, "unplugged");
+        shademoPwmState.put(2, "plugged in");
+        shademoPwmState.put(3, "charging");
+        shademoPwmState.put(4, "charging");
+        addMapping("evsGroup4", "50", shademoPwmState);
+
         // ── evsValuesToUpdate / index 0 — enableChargeSHM ──────────────────
         Map<Integer, String> enableChargeSHM = new HashMap<>();
         enableChargeSHM.put(0, "Stop");
