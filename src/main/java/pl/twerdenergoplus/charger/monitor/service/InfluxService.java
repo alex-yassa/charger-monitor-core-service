@@ -5,6 +5,7 @@ import com.influxdb.client.InfluxDBClientFactory;
 import com.influxdb.client.WriteApiBlocking;
 import com.influxdb.client.domain.WritePrecision;
 import com.influxdb.client.write.Point;
+import pl.twerdenergoplus.charger.monitor.mapper.ShmValueMapper;
 
 import java.time.Instant;
 
@@ -36,6 +37,12 @@ public class InfluxService {
                 .addTag("index", index)
                 .addField("data", data)
                 .time(instantTime, WritePrecision.MS);
+
+        // Enrich with a human-readable label for known enum/flag signals
+        String label = ShmValueMapper.resolve(shmFileName, index, data);
+        if (label != null) {
+            point.addField("label", label);
+        }
 
         WriteApiBlocking writeApi = client.getWriteApiBlocking();
         writeApi.writePoint(bucket, org, point);
